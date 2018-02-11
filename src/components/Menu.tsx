@@ -1,34 +1,35 @@
 import * as React from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { css } from 'react-emotion';
+import ToolsDropdownComponent, { ToolItem } from './ToolsDropdown';
 
-interface MenuItem {
+export interface MenuItem {
   name: string;
   position: 'left' | 'right';
+  color: 'red' | 'green' | 'yellow' | 'purple';
 }
 
-const MenuItems: MenuItem[] = [
-  { name: 'home', position: 'left' },
-  { name: 'tools', position: 'left' },
-  { name: 'login', position: 'right' },
-  { name: 'signup', position: 'right'}
-];
-
 export interface MenuProps {
-
+  menuItems: MenuItem[];
+  activeItem: string;
 }
 
 const pointer = css`
   cursor: pointer;
 `;
 
+const ToolItems: ToolItem[] = [
+  { name: 'Pathostat', link: '' },
+  { name: 'Pathoscope', link: '' },
+  { name: 'Comets', link: '' },
+  { name: 'Mind', link: '' }
+];
+
 @observer
 class MenuComponent extends React.Component<MenuProps, {}> {
-  @observable activeItem = 'home';
-  leftMenuElems: JSX.Element[];
-  rightMenuElems: JSX.Element[];
+  @observable activeItem = this.props.activeItem;
 
   constructor(props: MenuProps) {
     super(props);
@@ -41,31 +42,57 @@ class MenuComponent extends React.Component<MenuProps, {}> {
   }
 
   menuItemCreator(i: MenuItem, ind: number) {
+    if (i.name === 'tools') {
     return (
-      <Menu.Item
-        key={ind}
-        name={i.name}
-        active={this.activeItem === i.name}
+      <ToolsDropdownComponent
+        text={i.name.toUpperCase()}
+        color={i.color}
+        toolItems={ToolItems}
         onMouseEnter={() => { this.activeItem = i.name; }}
-        className={pointer}
-      >
-        {i.name.toUpperCase()}
-      </Menu.Item>
+        onMouseLeave={() => { this.activeItem = 'home'; }}
+      />
     );
+    } else {
+      return (
+        <Menu.Item
+          key={ind}
+          name={i.name}
+          active={this.activeItem === i.name}
+          color={i.color}
+          onMouseEnter={() => { this.activeItem = i.name; }}
+          onMouseLeave={() => { this.activeItem = 'home'; }}
+          className={pointer}
+        >
+          {i.name.toUpperCase()}
+        </Menu.Item>
+      );
+    }
   }
 
   render(): JSX.Element {
-    const leftMenuElems = MenuItems.filter((x: MenuItem) => x.position === 'left')
-                                  .map(this.menuItemCreator);
-    const rightMenuElems = MenuItems.filter((x: MenuItem) => x.position === 'right')
-                                  .map(this.menuItemCreator);
+    const leftMenuElems = this.props.menuItems
+                          .filter((x: MenuItem) => x.position === 'left')
+                          .map(this.menuItemCreator);
+    const rightMenuElems = this.props.menuItems
+                           .filter((x: MenuItem) => x.position === 'right')
+                           .map(this.menuItemCreator);
     return (
-      <Menu pointing={true} secondary={true} >
-        {leftMenuElems}
-        <Menu.Menu position="right">
-          {rightMenuElems}
-        </Menu.Menu>
-      </Menu>
+      <Segment inverted={true}>
+        <Menu
+          pointing={true}
+          secondary={true}
+          attached="top"
+          borderless={true}
+          size="large"
+          stackable={true}
+          inverted={true}
+        >
+          {leftMenuElems}
+          <Menu.Menu position="right">
+            {rightMenuElems}
+          </Menu.Menu>
+        </Menu>
+      </Segment>
     );
   }
 
