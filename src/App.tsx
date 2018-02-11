@@ -1,5 +1,6 @@
 import * as React from 'react';
 import 'semantic-ui-css/semantic.min.css';
+import 'animate.css';
 import './App.css';
 import HeaderComponent from './components/Header';
 

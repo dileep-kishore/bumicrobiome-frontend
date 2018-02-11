@@ -1,40 +1,60 @@
 import * as React from 'react';
-import './Header.css';
-import { Grid, Header } from 'semantic-ui-react';
-import styled from 'react-emotion';
+import { Grid, Image, Segment, Button } from 'semantic-ui-react';
+import MenuComponent, { MenuItem } from './Menu';
+const microbiomeBanner = require('../images/banner_microbiome.png');
+import { css } from 'react-emotion';
 
-const MyHeader = ({ className, children }: { className?: string, children: string }) => (
-  <Header as="h1" size="large" dividing={true} className={className}>
-    {children}
-  </Header>
-);
+const MenuItems: MenuItem[] = [
+  { name: 'home', position: 'left', color: 'green' },
+  { name: 'tools', position: 'left', color: 'red' },
+  { name: 'login', position: 'right', color: 'yellow' },
+  { name: 'signup', position: 'right', color: 'purple'}
+];
 
-const StyledHeader = styled(MyHeader)`
-  color: palevioletred;
-  background: red;
+const bgStyle = css`
+  background: #000000;
+  background: -webkit-linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(to right, #434343, #000000);
 `;
 
-const DivWithShorthand = styled.div`
-	color: hotpink;
-`;
+function goToMicrobiomePage(): void {
+  window.location.href = 'http://sites.bu.edu/microbiome/';
+}
 
 function HeaderComponent(): JSX.Element {
   return (
-    <Grid container={true}>
-      <Grid.Row>
-        <Grid.Column>
-          <Header as="h1" size="large" dividing={true}> Microbiome Initiative </Header>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column>
-          <StyledHeader> Microbiome Initiative </StyledHeader>
-        </Grid.Column>
-      </Grid.Row>
-      <DivWithShorthand>
-        Hello
-      </DivWithShorthand>
-    </Grid>
+    <Segment style={{background: `linear-gradient(to right, #434343, #000000)`}} className={bgStyle}>
+      <Grid container={true}>
+        <Grid.Row>
+          <Grid.Column>
+            <MenuComponent activeItem="home" menuItems={MenuItems}/>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Image
+              src={microbiomeBanner}
+              fluid={true}
+              rounded={true}
+              className="animated slideInDown"
+            />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row centered={true} columns={4}>
+          <Grid.Column className="animated infinite pulse">
+            <Button
+              basic={true}
+              inverted={true}
+              color="pink"
+              size="large"
+              onClick={goToMicrobiomePage}
+            >
+              Microbiome Day 2018
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Segment>
   );
 }
 

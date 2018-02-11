@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Dropdown } from 'semantic-ui-react';
+const capitalize = require('lodash/capitalize');
 
 export interface ToolItem {
   name: string;
@@ -15,8 +16,8 @@ export interface ToolsDropdownProps {
 }
 
 function ToolsDropdownComponent(props: ToolsDropdownProps): JSX.Element {
-  const dropdownItems = props.toolItems.map((x: ToolItem) => (
-    <Dropdown.Item> {x.name} </Dropdown.Item>
+  const dropdownItems = props.toolItems.map((x: ToolItem, ind: number) => (
+    <Dropdown.Item key={ind}> {capitalize(x.name)} </Dropdown.Item>
   ));
   return (
     <Dropdown
