@@ -20,6 +20,10 @@ const pointer = css`
   cursor: pointer;
 `;
 
+const noPadding = css`
+  padding: 0;
+`;
+
 const ToolItems: ToolItem[] = [
   { name: 'Pathostat', link: '' },
   { name: 'Pathoscope', link: '' },
@@ -44,13 +48,23 @@ class MenuComponent extends React.Component<MenuProps, {}> {
   menuItemCreator(i: MenuItem, ind: number) {
     if (i.name === 'tools') {
     return (
-      <ToolsDropdownComponent
-        text={i.name.toUpperCase()}
+      <Menu.Item
+        key={ind}
+        name={i.name}
+        active={this.activeItem === i.name}
         color={i.color}
-        toolItems={ToolItems}
         onMouseEnter={() => { this.activeItem = i.name; }}
         onMouseLeave={() => { this.activeItem = 'home'; }}
-      />
+        className={`${pointer} ${noPadding}`}
+      >
+        <ToolsDropdownComponent
+          text={i.name.toUpperCase()}
+          color={i.color}
+          toolItems={ToolItems}
+          onMouseEnter={() => { this.activeItem = i.name; }}
+          onMouseLeave={() => { this.activeItem = 'home'; }}
+        />
+      </Menu.Item>
     );
     } else {
       return (

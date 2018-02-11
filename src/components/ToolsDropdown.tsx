@@ -22,9 +22,7 @@ function ToolsDropdownComponent(props: ToolsDropdownProps): JSX.Element {
     <Dropdown
       text={props.text}
       pointing={true}
-      button={true}
       color={props.color}
-      className="link item"
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
     >
