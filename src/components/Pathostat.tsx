@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   Card,
-  Image,
   Header,
   Grid,
   Icon,
@@ -14,9 +13,20 @@ import {
   TransitionablePortal,
   Dimmer
  } from 'semantic-ui-react';
-const pathostatImg = require('../images/pathostat_image.png');
+import ToolDescComponent from './tool_components/ToolDescription';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+
+const description = `PathoStat is a R package that performs Statistical Microbiome Analysis
+on metagenomics results from sequencing data samples. In particular,
+it supports analyses on the PathoScope generated report files.
+PathoStat provides various functionalities including Relative Abundance
+charts, Diversity estimates and plots, tests of Differential Abundance,
+Time Series visualization, and Core OTU analysis.`;
+
+const img = require('../images/pathostat_image.png');
+
+const name = 'PathoStat';
 
 export interface PathostatProps {
   active?: boolean;
@@ -26,57 +36,6 @@ export interface PathostatProps {
 export interface PathostatState {
   active: boolean;
   disabled: boolean;
-}
-
-interface DescProps {
-  onClick: () => void;
-}
-
-function PathostatDescription(props: DescProps): JSX.Element {
-  return (
-    <Grid container={true}>
-      <Grid.Row>
-        <Grid.Column>
-          <Header as="h1" fluid={true} block={true} textAlign="center">
-            Pathostat
-          </Header>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row stretched={true} verticalAlign="middle" container={true}>
-        <Grid.Column width="4">
-          <Image src={pathostatImg} fluid={true}/>
-        </Grid.Column>
-        <Grid.Column width="12">
-          <Grid.Row>
-            <p>
-              PathoStat is a R package that performs Statistical Microbiome Analysis
-              on metagenomics results from sequencing data samples. In particular,
-              it supports analyses on the PathoScope generated report files.
-              PathoStat provides various functionalities including Relative Abundance
-              charts, Diversity estimates and plots, tests of Differential Abundance,
-              Time Series visualization, and Core OTU analysis.
-            </p>
-          </Grid.Row>
-          <Grid.Row verticalAlign="bottom" textAlign="center" style={{paddingTop: 70}}>
-            <Button
-              color="red"
-              onClick={props.onClick}
-              animated="fade"
-              size="big"
-              className="animated jello"
-            >
-              <Button.Content visible={true}>
-                Try it out
-              </Button.Content>
-              <Button.Content hidden={true}>
-                <Icon name="play"/>
-              </Button.Content>
-            </Button>
-          </Grid.Row>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-  );
 }
 
 interface FormProps {
@@ -127,7 +86,7 @@ const panes = [
     <Tab.Pane>
       <Dimmer.Dimmable dimmed={true} blurring={true} >
         <Dimmer simple={true} inverted={true} >
-          <Header as="h1" icon={true}>
+          <Header as="h2" icon={true}>
             <Icon name="info circle" />
             Under Construction!
           </Header>
@@ -197,7 +156,12 @@ class PathostatComponent extends React.Component<PathostatProps, PathostatState>
         >
           <Reveal.Content visible={true} style={{backgroundColor: 'white'}}>
             <Card.Content>
-              <PathostatDescription onClick={this.changeRevealState}/>
+              <ToolDescComponent
+                name={name}
+                img={img}
+                description={description}
+                onClick={this.changeRevealState}
+              />
             </Card.Content>
           </Reveal.Content>
           <Reveal.Content hidden={true}>
