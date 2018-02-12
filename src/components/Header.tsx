@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Grid, Image, Segment, Button, Icon, } from 'semantic-ui-react';
-import MenuComponent, { MenuItem } from './Menu';
+import MenuComponent, { MenuItem } from './header_components/Menu';
 const microbiomeBanner = require('../images/banner_microbiome.png');
 import { css } from 'react-emotion';
 
