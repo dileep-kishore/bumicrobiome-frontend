@@ -13,7 +13,9 @@ export interface ToolCardProps {
   name: string;
   img: string;
   description: string;
+  ex_active: boolean;
   ex_form_data: ExFormData[];
+  custom_active: boolean;
   custom_form_data: CustomFormData[];
   portal: JSX.Element;
   links: ToolCardExtraProps;
@@ -34,9 +36,9 @@ class ToolCardComponent extends React.Component<ToolCardProps, ToolCardState> {
   constructor(props: ToolCardProps) {
     super(props);
     const { active = false, disabled = true } = this.props;
-    const { name, ex_form_data, custom_form_data, portal } = this.props;
-    this.exData = {name: name, portal: portal, form_data: ex_form_data};
-    this.customData = {name: name, portal: portal, form_data: custom_form_data};
+    const { name, ex_active, ex_form_data, custom_active, custom_form_data, portal } = this.props;
+    this.exData = {name: name, active: ex_active, portal: portal, form_data: ex_form_data};
+    this.customData = {name: name, active: custom_active, portal: portal, form_data: custom_form_data};
     this.state = { active, disabled };
     this.active = active;
     this.disabled = disabled;

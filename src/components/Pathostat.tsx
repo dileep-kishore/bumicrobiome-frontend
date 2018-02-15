@@ -12,16 +12,6 @@ const img = require('../images/pathostat_image.png');
 
 const name = 'PathoStat';
 
-export interface PathostatProps {
-  active?: boolean;
-  disabled?: boolean;
-}
-
-export interface PathostatState {
-  active: boolean;
-  disabled: boolean;
-}
-
 const exFormData = [
   {label: 'OTU data', placeholder: 'otu_data.tsv'},
   {label: 'Taxonomy data', placeholder: 'tax_data.tsv'},
@@ -41,13 +31,15 @@ const extraLinks = {
   download_link: 'http://bioconductor.org/packages/release/bioc/html/PathoStat.html'
 };
 
-function PathostatComponent() {
+function PathoStatComponent() {
   return (
     <ToolCardComponent
       name={name}
       img={img}
       description={description}
+      ex_active={true}
       ex_form_data={exFormData}
+      custom_active={false}
       custom_form_data={customFormData}
       portal={portalComponent}
       links={extraLinks}
@@ -55,4 +47,4 @@ function PathostatComponent() {
   );
 }
 
-export default PathostatComponent;
+export default PathoStatComponent;

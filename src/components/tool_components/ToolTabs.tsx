@@ -4,12 +4,14 @@ import { ExFormData, ToolFormExComponent, ToolFormCustomComponent } from './Tool
 
 export interface ToolTabExProps {
   name: string;
+  active: boolean;
   portal: JSX.Element;
   form_data: ExFormData[];
 }
 
 export interface ToolTabCustomProps {
   name: string;
+  active: boolean;
   portal: JSX.Element;
   form_data: ExFormData[];
 }
@@ -20,28 +22,36 @@ export interface ToolTabProps {
   // panes: {menuItem: string, render: () => JSX.Element}[];
 }
 
-export function ToolTabExComponent(props: ToolTabExProps) {
-  const { name, portal, form_data } = props;
+function ToolTabExComponent(props: ToolTabExProps) {
+  const { name, active, portal, form_data } = props;
   return (
     <Tab.Pane attached={false} >
-      <Header as="h2" dividing={true} >
-        Run the app with an example dataset
-      </Header>
-      <ToolFormExComponent
-        name={name}
-        portal={portal}
-        form_data={form_data}
-      />
+      <Dimmer.Dimmable dimmed={!active} blurring={!active} >
+        <Dimmer active={!active} simple={true} inverted={true} >
+          <Header as="h2" icon={true}>
+            <Icon name="info circle" />
+            Under Construction!
+          </Header>
+        </Dimmer>
+        <Header as="h2" dividing={true} >
+          Run the app with an example dataset
+        </Header>
+        <ToolFormExComponent
+          name={name}
+          portal={portal}
+          form_data={form_data}
+        />
+      </Dimmer.Dimmable>
     </Tab.Pane>
   );
 }
 
-export function ToolTabCustomComponent(props: ToolTabCustomProps) {
-  const { name, portal, form_data } = props;
+function ToolTabCustomComponent(props: ToolTabCustomProps) {
+  const { name, active, portal, form_data } = props;
   return (
     <Tab.Pane>
-      <Dimmer.Dimmable dimmed={true} blurring={true} >
-        <Dimmer simple={true} inverted={true} >
+      <Dimmer.Dimmable dimmed={!active} blurring={!active} >
+        <Dimmer active={!active} simple={true} inverted={true} >
           <Header as="h2" icon={true}>
             <Icon name="info circle" />
             Under Construction!
@@ -67,6 +77,7 @@ function ToolTabComponent(props: ToolTabProps) {
         <ToolTabExComponent
           key="example"
           name={ex_data.name}
+          active={ex_data.active}
           portal={ex_data.portal}
           form_data={ex_data.form_data}
         />
@@ -75,6 +86,7 @@ function ToolTabComponent(props: ToolTabProps) {
         <ToolTabCustomComponent
           key="custom"
           name={custom_data.name}
+          active={custom_data.active}
           portal={custom_data.portal}
           form_data={custom_data.form_data}
         />
