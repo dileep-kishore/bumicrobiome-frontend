@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Tab, TabPane, Header, Dimmer, Icon, Grid } from 'semantic-ui-react';
+import { Tab, Header, Dimmer, Icon, Grid } from 'semantic-ui-react';
 import { ExFormData, ToolFormExComponent, ToolFormCustomComponent } from './ToolForm';
 
 export interface ToolTabExProps {
@@ -23,7 +23,7 @@ export interface ToolTabProps {
 export function ToolTabExComponent(props: ToolTabExProps) {
   const { name, portal, form_data } = props;
   return (
-    <TabPane>
+    <Tab.Pane attached={false} >
       <Header as="h2" dividing={true} >
         Run the app with an example dataset
       </Header>
@@ -32,15 +32,15 @@ export function ToolTabExComponent(props: ToolTabExProps) {
         portal={portal}
         form_data={form_data}
       />
-    </TabPane>
+    </Tab.Pane>
   );
 }
 
 export function ToolTabCustomComponent(props: ToolTabCustomProps) {
   const { name, portal, form_data } = props;
   return (
-    <Dimmer.Dimmable dimmed={true} blurring={true} >
-      <TabPane>
+    <Tab.Pane>
+      <Dimmer.Dimmable dimmed={true} blurring={true} >
         <Dimmer simple={true} inverted={true} >
           <Header as="h2" icon={true}>
             <Icon name="info circle" />
@@ -55,8 +55,8 @@ export function ToolTabCustomComponent(props: ToolTabCustomProps) {
           portal={portal}
           form_data={form_data}
         />
-      </TabPane>
-    </Dimmer.Dimmable>
+      </Dimmer.Dimmable>
+    </Tab.Pane>
   );
 }
 
@@ -64,14 +64,16 @@ function ToolTabComponent(props: ToolTabProps) {
   const { ex_data, custom_data } = props;
   const panes = [
     { menuItem: 'Run Example', render: () => (
-        <ToolFormExComponent
+        <ToolTabExComponent
+          key="example"
           name={ex_data.name}
           portal={ex_data.portal}
           form_data={ex_data.form_data}
         />
     )},
     { menuItem: 'Custom Data', render: () => (
-        <ToolFormCustomComponent
+        <ToolTabCustomComponent
+          key="custom"
           name={custom_data.name}
           portal={custom_data.portal}
           form_data={custom_data.form_data}
