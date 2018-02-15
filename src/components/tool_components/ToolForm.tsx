@@ -54,14 +54,12 @@ export function ToolFormExComponent(props: ToolFormExProps) {
           style={{ left: '12%', position: 'fixed', top: '5%', zIndex: 1000,
                     height: '90vh', width: '80vw' }}
         >
-          <Grid style={{padding: 10}} >
-            <Grid.Row stretched={true} >
+          <Grid style={{padding: 10}} stretched={true} >
+            <Grid.Row >
               <Header as="h1" dividing={true} > {name} </Header>
             </Grid.Row>
-            <Grid.Row>
-              {portal}
-            </Grid.Row>
           </Grid>
+          {portal}
         </Segment>
       </TransitionablePortal>
     </Form>
@@ -99,13 +97,11 @@ export function ToolFormCustomComponent(props: ToolFormCustomProps) {
                     height: '90vh', width: '80vw' }}
         >
           <Grid style={{padding: 10}} >
-            <Grid.Row stretched={true} >
+            <Grid.Row >
               <Header as="h1" dividing={true} > {name} </Header>
             </Grid.Row>
-            <Grid.Row>
-              {portal}
-            </Grid.Row>
           </Grid>
+          {portal}
         </Segment>
       </TransitionablePortal>
     </Form>
