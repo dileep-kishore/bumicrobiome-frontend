@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Form, TransitionablePortal, Button, Segment, Header } from 'semantic-ui-react';
+import { Form, TransitionablePortal, Button, Segment, Header, Grid } from 'semantic-ui-react';
 
 export interface ExFormData {
   label: string;
@@ -21,7 +21,6 @@ export interface ToolFormCustomProps {
   name: string;
   portal: JSX.Element;
   form_data: CustomFormData[];
-
 }
 
 export function ToolFormExComponent(props: ToolFormExProps) {
@@ -41,6 +40,7 @@ export function ToolFormExComponent(props: ToolFormExProps) {
         {formInputs}
       </Form.Group>
       <TransitionablePortal
+        transition={{ animation: 'fly up', duration: 500 }}
         closeOnTriggerClick={true}
         openOnTriggerClick={true}
         trigger={(
@@ -54,8 +54,14 @@ export function ToolFormExComponent(props: ToolFormExProps) {
           style={{ left: '12%', position: 'fixed', top: '5%', zIndex: 1000,
                     height: '90vh', width: '80vw' }}
         >
-          <Header as="h1" dividing={true} > {name} </Header>
-          {portal}
+          <Grid style={{padding: 10}} >
+            <Grid.Row stretched={true} >
+              <Header as="h1" dividing={true} > {name} </Header>
+            </Grid.Row>
+            <Grid.Row>
+              {portal}
+            </Grid.Row>
+          </Grid>
         </Segment>
       </TransitionablePortal>
     </Form>
@@ -78,6 +84,7 @@ export function ToolFormCustomComponent(props: ToolFormCustomProps) {
         {formInputs}
       </Form.Group>
       <TransitionablePortal
+        transition={{ animation: 'fly up', duration: 500 }}
         closeOnTriggerClick={true}
         openOnTriggerClick={true}
         trigger={(
@@ -91,8 +98,14 @@ export function ToolFormCustomComponent(props: ToolFormCustomProps) {
           style={{ left: '12%', position: 'fixed', top: '5%', zIndex: 1000,
                     height: '90vh', width: '80vw' }}
         >
-          <Header as="h1" dividing={true} > {name} </Header>
-          {portal}
+          <Grid style={{padding: 10}} >
+            <Grid.Row stretched={true} >
+              <Header as="h1" dividing={true} > {name} </Header>
+            </Grid.Row>
+            <Grid.Row>
+              {portal}
+            </Grid.Row>
+          </Grid>
         </Segment>
       </TransitionablePortal>
     </Form>
