@@ -4,7 +4,7 @@ import 'animate.css';
 import 'hover.css/css/hover-min.css';
 import './App.css';
 import HeaderComponent from './components/Header';
-import ToolsComponent from './components/Tools';
+import BodyComponent from './components/Body';
 import FooterComponent from './components/Footer';
 
 class App extends React.Component {
@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <HeaderComponent/>
-        <ToolsComponent/>
+        <BodyComponent/>
         <FooterComponent/>
       </div>
     );
