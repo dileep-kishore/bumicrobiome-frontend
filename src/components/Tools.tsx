@@ -7,8 +7,8 @@ import MindComponent from './Mind';
 
 function ToolsComponent(): JSX.Element {
   return (
-    <Grid container={true}>
-      <Grid.Row>
+    <Grid container={true} >
+      <Grid.Row >
         <CometsComponent />
         <MindComponent />
         <PathoStatComponent />
