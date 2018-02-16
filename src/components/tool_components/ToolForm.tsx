@@ -52,7 +52,8 @@ export function ToolFormExComponent(props: ToolFormExProps) {
         <Segment
           raised={true}
           style={{ left: '12%', position: 'fixed', top: '5%', zIndex: 1000,
-                    height: '90vh', width: '80vw' }}
+                    height: '90vh', width: '80vw',
+                    boxShadow: `0 0 0 1600px rgba(0,0,0,0.65)` }}
         >
           <Grid style={{padding: 10}} stretched={true} >
             <Grid.Row >
@@ -94,7 +95,8 @@ export function ToolFormCustomComponent(props: ToolFormCustomProps) {
         <Segment
           raised={true}
           style={{ left: '12%', position: 'fixed', top: '5%', zIndex: 1000,
-                    height: '90vh', width: '80vw' }}
+                    height: '90vh', width: '80vw',
+                    boxShadow: `0 0 0 1600px rgba(0,0,0,0.65)` }}
         >
           <Grid style={{padding: 10}} >
             <Grid.Row >
