@@ -72,35 +72,38 @@ class ToolCardComponent extends React.Component<ToolCardProps, ToolCardState> {
           onLeave={this.handleExit}
           topOffset="5%"
           bottomOffset="5%"
-        />
-        <Reveal
-          animated="move up"
-          active={this.active}
-          disabled={this.disabled}
-          style={{whiteSpace: 'normal'}}
         >
-          <Reveal.Content visible={true} style={{backgroundColor: 'white'}}>
-            <Card.Content>
-              <ToolDescComponent
-                name={this.props.name}
-                img={this.props.img}
-                description={this.props.description}
-                onClick={this.changeRevealState}
-              />
-            </Card.Content>
-          </Reveal.Content>
-          <Reveal.Content hidden={true}>
-            <Card.Content>
-              <Button
-                negative={true}
-                floated="right"
-                icon="close"
-                onClick={this.changeRevealState}
-              />
-              <ToolTabComponent ex_data={this.exData} custom_data={this.customData} />
-            </Card.Content>
-          </Reveal.Content>
-        </Reveal>
+        <div>
+          <Reveal
+            animated="move up"
+            active={this.active}
+            disabled={this.disabled}
+            style={{whiteSpace: 'normal'}}
+          >
+            <Reveal.Content visible={true} style={{backgroundColor: 'white'}}>
+              <Card.Content>
+                <ToolDescComponent
+                  name={this.props.name}
+                  img={this.props.img}
+                  description={this.props.description}
+                  onClick={this.changeRevealState}
+                />
+              </Card.Content>
+            </Reveal.Content>
+            <Reveal.Content hidden={true}>
+              <Card.Content>
+                <Button
+                  negative={true}
+                  floated="right"
+                  icon="close"
+                  onClick={this.changeRevealState}
+                />
+                <ToolTabComponent ex_data={this.exData} custom_data={this.customData} />
+              </Card.Content>
+            </Reveal.Content>
+          </Reveal>
+        </div>
+        </Waypoint>
         <ToolCardExtra
           github_link={this.props.links.github_link}
           download_link={this.props.links.download_link}
