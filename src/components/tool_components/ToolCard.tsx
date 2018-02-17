@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Reveal } from 'semantic-ui-react';
+import { Card, Reveal, Button } from 'semantic-ui-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import ToolDescComponent from './ToolDescription';
@@ -48,13 +48,6 @@ class ToolCardComponent extends React.Component<ToolCardProps, ToolCardState> {
   changeRevealState() {
     this.active = !this.active;
     this.disabled = !this.disabled;
-    setTimeout(() => {
-      this.active = !this.active;
-    },         3000);
-    setTimeout(() => {
-      this.active = false;
-      this.disabled = true;
-    },         10000);
   }
 
   render(): JSX.Element {
@@ -78,6 +71,12 @@ class ToolCardComponent extends React.Component<ToolCardProps, ToolCardState> {
           </Reveal.Content>
           <Reveal.Content hidden={true}>
             <Card.Content>
+              <Button
+                negative={true}
+                floated="right"
+                icon="close"
+                onClick={this.changeRevealState}
+              />
               <ToolTabComponent ex_data={this.exData} custom_data={this.customData} />
             </Card.Content>
           </Reveal.Content>
