@@ -4,27 +4,26 @@ const capitalize = require('lodash/capitalize');
 
 interface MenuItemType {
   name: string;
-  onClick: () => void;
 }
 
 export interface SidenavProps {
-  contextRef: object;
+  contextRef?: HTMLDivElement | null | undefined;
   menuData: MenuItemType[];
 }
 
 function SidenavComponent(props: SidenavProps) {
   const { contextRef, menuData } = props;
   const menuItems = menuData.map((x: MenuItemType, ind: number) => (
-    <Menu.Item name={x.name} onClick={x.onClick}>
+    <Menu.Item key={ind} name={x.name} link={true} color="red" >
       {capitalize(x.name)}
     </Menu.Item>
   ));
   return (
-    <Rail position="left">
-      <Sticky context={contextRef}>
-        <Menu vertical={true}>
-          <Menu.Item>
-            <Input placeholder="Search..." />
+    <Rail close={true} position="left">
+      <Sticky active={true} context={contextRef ? contextRef : {}}>
+        <Menu vertical={true} pointing={true} inverted={true} >
+          <Menu.Item active={true} >
+            <Input placeholder="Search..." fluid={true} action={{ icon: 'search' }} />
           </Menu.Item>
           {menuItems}
         </Menu>
