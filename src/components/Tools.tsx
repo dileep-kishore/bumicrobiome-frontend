@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Grid } from 'semantic-ui-react';
-import PathoStatComponent from './Pathostat';
-import PathoScopeComponent from './Pathoscope';
-import CometsComponent from './Comets';
-import MindComponent from './Mind';
+import PathoStatComponent from './tools/Pathostat';
+import PathoScopeComponent from './tools/Pathoscope';
+import CometsComponent from './tools/Comets';
+import MindComponent from './tools/Mind';
 
 function ToolsComponent(): JSX.Element {
   return (

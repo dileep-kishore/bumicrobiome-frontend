@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ToolCardComponent from './tool_components/ToolCard';
+import ToolCardComponent from '../tool_components/ToolCard';
 
 const description = `PathoScope is a complete bioinformatics framework for rapidly and
 accurately quantifying the proportions of reads from individual microbial
@@ -9,7 +9,7 @@ analysis steps; including reference genome library extraction and
 indexing, read quality control and alignment, strain identification,
 and summarization and annotation of results.`;
 
-const img = require('../images/pathoscope_workflow.png');
+const img = require('../../images/pathoscope_workflow.png');
 
 const name = 'PathoScope';
 

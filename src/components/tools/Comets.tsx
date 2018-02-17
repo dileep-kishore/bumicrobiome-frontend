@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ToolCardComponent from './tool_components/ToolCard';
+import ToolCardComponent from '../tool_components/ToolCard';
 
 const description = `COMETS (Computation Of Microbial Ecosystems in Time and Space) is a software
 platform for performing computer simulations of metabolism in spatially structured microbial
@@ -7,7 +7,7 @@ communities. It is based on stoichiometric modeling of the genome-scale metaboli
 individual microbial species (using dynamic flux balance analysis), and on a discrete approximation
 of diffusion.`;
 
-const img = require('../images/comets.jpg');
+const img = require('../../images/comets.jpg');
 
 const name = 'Comets';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ToolCardComponent from './tool_components/ToolCard';
+import ToolCardComponent from '../tool_components/ToolCard';
 
 const description = `PathoStat is a R package that performs Statistical Microbiome Analysis
 on metagenomics results from sequencing data samples. In particular,
@@ -8,7 +8,7 @@ PathoStat provides various functionalities including Relative Abundance
 charts, Diversity estimates and plots, tests of Differential Abundance,
 Time Series visualization, and Core OTU analysis.`;
 
-const img = require('../images/pathostat_image.png');
+const img = require('../../images/pathostat_image.png');
 
 const name = 'PathoStat';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ToolCardComponent from './tool_components/ToolCard';
+import ToolCardComponent from '../tool_components/ToolCard';
 
 const description = `The Microbial Interaction Database is a comprehensive database
 of microbial interactions from different data source, and an open source computational
@@ -7,7 +7,7 @@ platform for simulation, analysis and design of microbial commnities relevant to
 This project aims to alleviate the gaps in knowledge of interactions by integrating multiple
 types to data.`;
 
-const img = require('../images/mind.svg');
+const img = require('../../images/mind.svg');
 
 const name = 'Microbial Interaction Database';
 
