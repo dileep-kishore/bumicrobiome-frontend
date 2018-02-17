@@ -11,7 +11,7 @@ export interface ToolDescProps {
 function ToolDescComponent(props: ToolDescProps): JSX.Element {
   const { name, description, img, onClick } = props;
   return (
-    <Grid container={true}>
+    <Grid container={true} padded={true} >
       <Grid.Row>
         <Grid.Column>
           <Header as="h1" fluid={true} block={true} textAlign="center">
@@ -20,10 +20,10 @@ function ToolDescComponent(props: ToolDescProps): JSX.Element {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row stretched={true} verticalAlign="middle" container={true}>
-        <Grid.Column width="4">
-          <Image src={img} fluid={true}/>
+        <Grid.Column width="5">
+          <Image src={img} height={300} width={300} />
         </Grid.Column>
-        <Grid.Column width="12">
+        <Grid.Column width="11">
           <Grid.Row>
             <p> {description} </p>
           </Grid.Row>

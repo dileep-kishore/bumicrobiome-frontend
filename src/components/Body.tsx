@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ToolsComponent from './Tools';
-import SidenavComponent from './sidebar_components/Sidenav';
-import { Grid, Segment } from 'semantic-ui-react';
+// import SidenavComponent from './sidebar_components/Sidenav';
+import { Grid } from 'semantic-ui-react';
 
 export interface BodyProps {
 
@@ -11,38 +11,29 @@ export interface BodyProps {
 // type Ref = string | ((instance: HTMLDivElement | null) => any) | undefined;
 
 export interface BodyState {
-  contextRef?: HTMLDivElement | null | undefined;
+
 }
 
-const names = [
-  'comets', 'mind', 'pathostat', 'pathoscope'
-];
+// const names = [
+//   'comets', 'mind', 'pathostat', 'pathoscope'
+// ];
 
 class BodyComponent extends React.Component<BodyProps, BodyState> {
-  state = {contextRef: undefined};
-  ctrl: HTMLDivElement | null | undefined;
 
   constructor(props: BodyProps) {
     super(props);
   }
 
   render() {
-    const menuData = names.map((x: string) => ({name: x}));
+    // const menuData = names.map((x: string) => ({name: x}));
     return (
-      <div ref={(contextRef) => { this.ctrl = contextRef; }}>
-        <Grid centered={true} columns={12}>
+        <Grid centered={true} stretched={true} >
           <Grid.Row>
-          <Segment>
             <Grid.Column >
               <ToolsComponent />
             </Grid.Column>
-            <Grid.Column >
-              <SidenavComponent contextRef={this.ctrl} menuData={menuData} />
-            </Grid.Column>
-          </Segment>
           </Grid.Row>
         </Grid>
-      </div>
     );
   }
 }

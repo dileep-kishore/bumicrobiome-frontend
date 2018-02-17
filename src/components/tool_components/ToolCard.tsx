@@ -6,6 +6,7 @@ import ToolDescComponent from './ToolDescription';
 import ToolTabComponent, { ToolTabExProps, ToolTabCustomProps } from './ToolTabs';
 import ToolCardExtra, { ToolCardExtraProps } from './ToolCardExtra';
 import { ExFormData, CustomFormData } from './ToolForm';
+import Waypoint from 'react-waypoint';
 
 export interface ToolCardProps {
   active?: boolean;
@@ -24,12 +25,14 @@ export interface ToolCardProps {
 export interface ToolCardState {
   active: boolean;
   disabled: boolean;
+  cardClass: string;
 }
 
 @observer
 class ToolCardComponent extends React.Component<ToolCardProps, ToolCardState> {
   @observable active: boolean;
   @observable disabled: boolean;
+  @observable cardClass: string = 'hvr-glow';
   exData: ToolTabExProps;
   customData: ToolTabCustomProps;
 
@@ -39,10 +42,13 @@ class ToolCardComponent extends React.Component<ToolCardProps, ToolCardState> {
     const { name, ex_active, ex_form_data, custom_active, custom_form_data, portal } = this.props;
     this.exData = {name: name, active: ex_active, portal: portal, form_data: ex_form_data};
     this.customData = {name: name, active: custom_active, portal: portal, form_data: custom_form_data};
-    this.state = { active, disabled };
+    const cardClass = this.cardClass;
+    this.state = { active, disabled, cardClass };
     this.active = active;
     this.disabled = disabled;
     this.changeRevealState = this.changeRevealState.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleExit = this.handleExit.bind(this);
   }
 
   changeRevealState() {
@@ -50,9 +56,23 @@ class ToolCardComponent extends React.Component<ToolCardProps, ToolCardState> {
     this.disabled = !this.disabled;
   }
 
-  render(): JSX.Element {
+  handleEnter() {
+    this.cardClass = 'hvr-glow animated slideInRight';
+  }
+
+  handleExit() {
+    this.cardClass = 'hvr-glow animated slideOutLeft';
+  }
+
+  render() {
     return (
-      <Card fluid={true} className="hvr-glow">
+      <Card fluid={true} className={this.cardClass}>
+        <Waypoint
+          onEnter={this.handleEnter}
+          onLeave={this.handleExit}
+          topOffset="5%"
+          bottomOffset="5%"
+        />
         <Reveal
           animated="move up"
           active={this.active}
@@ -86,7 +106,6 @@ class ToolCardComponent extends React.Component<ToolCardProps, ToolCardState> {
           download_link={this.props.links.download_link}
         />
       </Card>
-
     );
   }
 }
