@@ -1,22 +1,17 @@
 import * as React from 'react';
-import ToolsComponent from './Tools';
-// import SidenavComponent from './sidebar_components/Sidenav';
-import { Grid } from 'semantic-ui-react';
+import SidenavComponent from './sidebar_components/Sidenav';
 
 export interface BodyProps {
 
 }
 
-// tslint:disable-next-line:no-any
-// type Ref = string | ((instance: HTMLDivElement | null) => any) | undefined;
-
 export interface BodyState {
 
 }
 
-// const names = [
-//   'comets', 'mind', 'pathostat', 'pathoscope'
-// ];
+const names = [
+  'comets', 'mind', 'pathostat', 'pathoscope'
+];
 
 class BodyComponent extends React.Component<BodyProps, BodyState> {
 
@@ -25,15 +20,9 @@ class BodyComponent extends React.Component<BodyProps, BodyState> {
   }
 
   render() {
-    // const menuData = names.map((x: string) => ({name: x}));
+    const menuData = names.map((x: string) => ({name: x}));
     return (
-        <Grid centered={true} stretched={true} >
-          <Grid.Row>
-            <Grid.Column >
-              <ToolsComponent />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+      <SidenavComponent menuData={menuData} />
     );
   }
 }
