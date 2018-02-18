@@ -11,10 +11,25 @@ export interface MenuItem {
   color: 'red' | 'green' | 'yellow' | 'purple';
 }
 
+export interface MenuBarProps {
+  inverted: boolean;
+  size: 'tiny' | 'small' | 'large' | 'huge';
+  borderless: boolean;
+  attached: boolean | 'top' | 'bottom';
+  secondary: boolean;
+}
+
 export interface MenuProps {
   menuItems: MenuItem[];
   activeItem: string;
+  menuStyle: object;
+  menuState: MenuBarProps;
 }
+
+const menuTransition = css`
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+`;
 
 const pointer = css`
   cursor: pointer;
@@ -97,6 +112,7 @@ class MenuComponent extends React.Component<MenuProps, {}> {
   }
 
   render(): JSX.Element {
+    const { menuState, menuStyle } = this.props;
     const leftMenuElems = this.props.menuItems
                           .filter((x: MenuItem) => x.position === 'left')
                           .map(this.menuItemCreator);
@@ -105,13 +121,11 @@ class MenuComponent extends React.Component<MenuProps, {}> {
                            .map(this.buttonCreator);
     return (
         <Menu
+          {...menuState}
           pointing={true}
-          secondary={true}
-          attached="top"
-          borderless={true}
-          size="large"
           stackable={true}
-          inverted={true}
+          className={menuTransition}
+          style={menuStyle}
         >
           <Menu.Item style={{paddingBottom: 2, paddingLeft: 0}}>
             <a href="http://www.bu.edu">
