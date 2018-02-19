@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-scroll": "^1.5.3",
     "animate.css": "^3.6.1",
     "emotion": "^9.0.0",
     "hover.css": "^2.2.1",
