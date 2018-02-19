@@ -103,7 +103,7 @@ class MenuComponent extends React.Component<MenuProps, {}> {
     return (
       <Button
         key={ind}
-        inverted={true}
+        inverted={this.props.menuState.inverted}
         color={i.color}
       >
         {i.name.toUpperCase()}

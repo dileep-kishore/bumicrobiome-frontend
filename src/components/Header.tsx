@@ -20,12 +20,6 @@ const bgStyle = css`
   background: linear-gradient(to right, #434343, #000000);
 `;
 
-// const menuStyle = css`
-//   position: fixed;
-//   top: 0%;
-//   background-color: whitesmoke;
-// `;
-
 export interface HeaderProps {
 
 }
@@ -67,8 +61,8 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
   handleMenuFixed(): void {
     this.menuState = {
       inverted: false,
-      size: 'large',
-      borderless: false,
+      size: 'small',
+      borderless: true,
       attached: false,
       secondary: false
     };
@@ -80,6 +74,14 @@ class HeaderComponent extends React.Component<HeaderProps, HeaderState> {
       zIndex: 1000,
       backgroundColor: 'whitesmoke',
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        this.handleMenuFixed();
+      }
+    });
   }
 
   render(): JSX.Element {
